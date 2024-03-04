@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+DIR=$(dirname $(realpath "$0"))
+
+
+build() {
+  docker buildx build -t "$1:latest" -f "$DIR/$1.Dockerfile" $HOME ${@:2}
+  echo "Built $1:latest"
+}
+
+if [[ $1 == "all" ]]; then
+  for container in $(cat all.list); do
+    build $container ${@:2}
+  done
+
+  exit 0
+fi
+
+
+if [[ -z $1 ]]; then
+  echo "Usage $0 <container>"
+  exit 1
+fi
+
+if [[ ! -f "$DIR/$1.Dockerfile" ]]; then
+  echo "Invalid container: '$1' does not exist"
+  exit 1
+fi
+
+build $@
+
