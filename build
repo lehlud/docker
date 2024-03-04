@@ -9,7 +9,7 @@ build() {
 }
 
 if [[ $1 == "all" ]]; then
-  for container in $(cat all.list); do
+  for container in $(cat "$DIR/all.list"); do
     build $container ${@:2}
   done
 

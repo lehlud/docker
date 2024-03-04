@@ -12,10 +12,11 @@ RUN add-apt-repository ppa:maveonair/helix-editor \
 
 WORKDIR /root
 
-COPY .ssh/* .ssh/
+COPY .ssh/ .
+COPY .gitconfig .
 COPY .config/helix/ .config/helix/
 COPY .config/fish/ .config/fish/
-COPY .tmux.conf .
+COPY .config/tmux/ .config/tmux/
 
 ENV TERM=xterm-256color
 ENV COLORTERM=truecolor
