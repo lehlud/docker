@@ -4,12 +4,11 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -y \
 && apt-get install --no-install-recommends -y \
-software-properties-common gpg-agent ssh git fish tmux curl tree ranger file
+software-properties-common gpg-agent ssh git make fish tmux curl tree ranger file default-jre-headless python3 pip plantuml graphviz man
 
 RUN add-apt-repository ppa:maveonair/helix-editor \
 && apt-get update -y \
-&& apt-get install --no-install-recommends -y helix \
-&& rm -rf /var/lib/apt/lists/*
+&& apt-get install --no-install-recommends -y helix
 
 WORKDIR /root
 
@@ -25,4 +24,6 @@ ENV TERM=xterm-256color
 ENV COLORTERM=truecolor
 RUN chsh -s "/usr/bin/fish"
 ENTRYPOINT "/usr/bin/fish"
+
+RUN rm -rf /tmp/* /var/lib/apt/lists/*
 

@@ -8,5 +8,7 @@ RUN apt-get update -y \
 && apt-get install -y --no-install-recommends nodejs \
 && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g typescript-language-server svelte-language-server
+RUN npm install -g typescript typescript-language-server svelte-language-server
+
+RUN curl https://bun.sh/install | bash
 
